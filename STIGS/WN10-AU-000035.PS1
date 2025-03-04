@@ -19,7 +19,6 @@
     Systems Tested  : Windows 10
     PowerShell Ver. : 5.1.19041.5486
 
-<#
 .SYNOPSIS
     Configures Windows audit policy to enable logging of User Account Management failures.
 

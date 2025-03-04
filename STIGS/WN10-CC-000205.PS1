@@ -20,25 +20,35 @@
     PowerShell Ver. : 5.1.19041.5486
 
 .USAGE
-.DESCRIPTION
-    This script ensures Windows Telemetry is not set to "Full" by modifying the registry setting  
-    "AllowTelemetry" to either **0 (Security)** or **1 (Basic)** as required for compliance.  
+    This script ensures that Windows Telemetry is not set to "Full" by modifying the registry settings.
 
-.PARAMETER None
-    This script does not take any parameters.
-
-.EXAMPLE
-    Open PowerShell as Administrator and run:
+    Example syntax:
     PS C:\> .\Set-TelemetryLevel.ps1
 
-    Expected Output:
-    "Telemetry level successfully set to 1."
+    Description:
+    This script modifies the registry key `AllowTelemetry` under  
+    `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection`  
+    to comply with STIG ID: WN10-CC-000205.  
+    The script ensures that Windows Telemetry is set to `0` (Security) or `1` (Basic)  
+    to prevent excessive data collection while maintaining necessary system diagnostics.  
+    If the registry path does not exist, the script creates it before applying the setting.
 
-.NOTES
-    - **Must be run as Administrator** to modify registry settings.  
-    - The script creates the registry path if it does not exist.  
-    - Default setting applies "Basic" telemetry (1); change `$regValue` to `0` for "Security".  
-    - Verifies the applied setting and provides success or failure feedback.  
+    Requirements:
+    - The script must be run as an administrator in PowerShell to modify the registry.  
+    - Designed for Windows 10. Compatibility with other versions is not guaranteed.
+
+    Notes:
+    - A system restart may be required for changes to take effect.  
+    - Ensure you have the necessary permissions to modify registry settings.  
+    - If Windows Analytics is used, the value may be set to `2` (Enhanced) per organizational policy.
+
+    Parameters:
+    - None
+
+    Exit codes:
+    - 0: Successfully applied the registry setting.  
+    - 1: Error during execution (e.g., insufficient privileges, registry modification failure).
+
 #>
 
 # CODE

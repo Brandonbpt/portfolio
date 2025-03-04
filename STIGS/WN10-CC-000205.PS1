@@ -20,9 +20,25 @@
     PowerShell Ver. : 5.1.19041.5486
 
 .USAGE
-    Put any usage instructions here.
-    Example syntax:
-    PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
+.DESCRIPTION
+    This script ensures Windows Telemetry is not set to "Full" by modifying the registry setting  
+    "AllowTelemetry" to either **0 (Security)** or **1 (Basic)** as required for compliance.  
+
+.PARAMETER None
+    This script does not take any parameters.
+
+.EXAMPLE
+    Open PowerShell as Administrator and run:
+    PS C:\> .\Set-TelemetryLevel.ps1
+
+    Expected Output:
+    "Telemetry level successfully set to 1."
+
+.NOTES
+    - **Must be run as Administrator** to modify registry settings.  
+    - The script creates the registry path if it does not exist.  
+    - Default setting applies "Basic" telemetry (1); change `$regValue` to `0` for "Security".  
+    - Verifies the applied setting and provides success or failure feedback.  
 #>
 
 # CODE

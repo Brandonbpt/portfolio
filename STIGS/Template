@@ -25,19 +25,5 @@
     PS C:\> .\__remediation_template(STIG-ID-WN10-AU-000500).ps1 
 #>
 
-# Define the registry path and value
-$regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
-$regName = "NoLockScreenCamera"
-$regValue = 1
-
-# Ensure the registry path exists, if not, create it
-if (-not (Test-Path $regPath)) {
-    New-Item -Path $regPath -Force
-}
-
-# Set the value to disable lock screen camera access
-Set-ItemProperty -Path $regPath -Name $regName -Value $regValue
-
-# Confirm the change
-Write-Host "Lock screen camera access has been successfully disabled."
+# CODE
 

@@ -19,28 +19,34 @@
     Systems Tested  : Windows 10
     PowerShell Ver. : 5.1.19041.5486
 
-.SYNOPSIS
-    Configures Windows audit policy to enable logging of User Account Management failures.
+.USAGE
+    This script enables logging for "User Account Management - Failure" events in Windows  
+    audit policy to comply with STIG ID: WN10-AU-000035.
 
-.DESCRIPTION
-    This script ensures that Windows logs failure events related to User Account Management.  
-    It modifies the audit policy using 'auditpol' to comply with STIG ID: WN10-AU-000035.  
-    The script must be run with Administrator privileges.
-
-.PARAMETER None
-    This script does not require any parameters.
-
-.EXAMPLE
-    Open PowerShell as Administrator and run:
+    Example syntax:
     PS C:\> .\Enable-UserAccountManagementAudit.ps1
 
-    Expected Output:
-    "Audit User Account Management - Failure has been successfully enabled."
+    Description:
+    This script uses the `auditpol` command to ensure that "User Account Management - Failure" events  
+    are logged for security auditing purposes. It verifies the current audit policy settings and applies  
+    the required configuration if not already enabled. 
 
-.NOTES
-    - Ensure you run this script as an Administrator.
-    - It checks the applied settings and provides success or failure feedback.
-    - If the audit policy is already configured, it will not make unnecessary changes.
+    Requirements:
+    - The script must be run as an administrator in PowerShell to modify audit policies.  
+    - Designed for Windows 10. Compatibility with other versions is not guaranteed.
+
+    Notes:
+    - Ensure you have administrative privileges before running the script.  
+    - This script checks the current audit setting and applies the policy if necessary.  
+    - If the policy is already enabled, the script will confirm and exit without making changes.
+
+    Parameters:
+    - None  
+
+    Exit codes:
+    - 0: Successfully enabled "User Account Management - Failure" audit policy.  
+    - 1: Error during execution (e.g., insufficient privileges, audit policy modification failure).
+
 
 #>
 # Ensure script runs as administrator
